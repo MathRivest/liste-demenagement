@@ -1,0 +1,87 @@
+// Import your custom modules in /modules
+@import "modules/buttons";
+@import "modules/forms";
+@import "modules/icons";
+@import "modules/items";
+
+// Desktop first breakpoint test
+#breakpoint-d {
+	&:before {
+		content: "desktop (default)";
+	}
+
+	@include breakpoint-d(tall-screen) {
+		color: green;
+	}
+
+	@include breakpoint-d(tablet) {
+		&:before {
+			content: "tablet";
+		}
+	}
+
+	@include breakpoint-d(small-tablet) {
+		&:before {
+			content: "small-tablet";
+		}
+	}
+
+	@include breakpoint-d(large-phone) {
+		&:before {
+			content: "large-phone";
+		}
+	}
+
+	@include breakpoint-d(phone) {
+		&:before {
+			content: "phone";
+		}
+	}
+
+	@include breakpoint-d(widescreen) {
+		&:before {
+			content: "widescreen";
+		}
+	}
+}
+
+// Mobile first breakpoint test
+#breakpoint {
+	&:before {
+		content: "phone (default)";
+	}
+
+	@include breakpoint(tall-screen) {
+		color: green;
+	}
+
+	@include breakpoint(large-phone) {
+		&:before {
+			content: "large-phone";
+		}
+	}
+
+	@include breakpoint(small-tablet) {
+		&:before {
+			content: "small-tablet";
+		}
+	}
+
+	@include breakpoint(tablet) {
+		&:before {
+			content: "tablet";
+		}
+	}
+
+	@include breakpoint(desktop, ie) {
+		&:before {
+			content: "desktop";
+		}
+	}
+
+	@include breakpoint(widescreen) {
+		&:before {
+			content: "widescreen";
+		}
+	}
+}
