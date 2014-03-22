@@ -1,5 +1,19 @@
 .m-items{
+	li{
+		@extend .clearfix;
+	}
 	input{
 		float:right;
+	}
+	.b-close{
+		float:right;
+		margin-left:12px;
+	}
+
+	.s-closed{
+		@include opacity(0.4);
+	}
+	.s-checked{
+		color:green;
 	}
 }

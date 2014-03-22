@@ -6,7 +6,10 @@
 
 	// Common
 	OP.main = (function() {
-		var checkedClass = 'l-checked',
+		var checkedClass = 's-checked',
+			closedClass = 's-closed',
+			checkedCookiePrefix = 'checkbox_',
+			closedCookiePrefix = 'close_',
 			$items = $('.m-items li');
 
 		var init = function() {
@@ -14,7 +17,8 @@
 			// Read the cookies and check matching items
 			$items.each(function(i, $el){
 				var newId = 'item-'+ i,
-					theCookie = $.cookie('checkbox_' + newId);
+					checkedCookie = $.cookie(checkedCookiePrefix + newId),
+					closedCookie = $.cookie(closedCookiePrefix + newId);
 				$el.id = newId;
 
 				// Append elements
@@ -22,13 +26,19 @@
 					'type':'checkbox'
 				});
 
-				$(this).prepend(checkbox);
+				var closeButton = $('<button/>', {
+					'text': 'Ne s\'applique pas',
+					'class': 'b-close'
+				});
 
+				$(this).append(closeButton).append(checkbox);
 
-
-				if(theCookie){
+				if(checkedCookie){
 					// Check the checkbox and mark the item
 					$(this).addClass(checkedClass).find('input[type="checkbox"]').attr('checked', 'checked');
+				}
+				if(closedCookie){
+					$(this).addClass(closedClass)
 				}
 			});
 
@@ -36,7 +46,7 @@
 			$items.find('input[type="checkbox"]').on('click', function(){
 				var $item = $(this).parents('li'),
 					itemID = $item.attr('id'),
-					cookieName = 'checkbox_' + itemID;
+					cookieName = checkedCookiePrefix + itemID;
 
 				if($.cookie(cookieName)){
 					// Unmark the item
@@ -51,6 +61,24 @@
 				}
 			});
 
+			// When user close an item
+			$items.find('.b-close').on('click', function(){
+				var $item = $(this).parents('li'),
+					itemID = $item.attr('id'),
+					cookieName = closedCookiePrefix + itemID;
+
+				if($.cookie(cookieName)){
+					// Unmark the item
+					$item.removeClass(closedClass);
+					// Delete the cookie
+					$.removeCookie(cookieName);
+				}else{
+					// Mark the item
+					$item.addClass(closedClass);
+					// Write the cookie
+					$.cookie(cookieName, itemID, { expires: 365 });
+				}
+			});
 
 		};
 
