@@ -1,0 +1,12 @@
+.m-hero{
+	position:relative;
+	min-height:480px;
+	margin-bottom:90px;
+	background:{
+		image:image-url('mtl.jpg');
+		size:cover;
+		position:top center;
+	}
+	text-align:center;
+	color:white;
+}

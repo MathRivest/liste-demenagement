@@ -1,10 +1,65 @@
 .m-items{
+	padding:0 20px;
 	li{
 		@extend .clearfix;
+		position:relative;
+		padding:22px 0;
+		border-bottom:1px solid $grey-light;
+		list-style:none;
+		&.l-hasdetail{
+			.title{
+				cursor:pointer;
+				&:hover{
+					@include opacity(0.7);
+				}
+			}
+			.i-arrow{
+				position:absolute;
+				left:-29px;
+				top:32px;
+
+				@include transition-property(all);
+				@include transition-duration(0.2s);
+				@include transition-timing-function(ease-in-out);
+			}
+		}
+		&.s-open .i-arrow{
+			@include rotate(90deg);
+		}
 	}
-	input{
+
+
+	.checkbox-wrapper{
+		display:block;
 		float:right;
+		cursor:pointer;
+		width: icons-sprite-width(i-check);
+		height: icons-sprite-height(i-check);
+		@include icons-sprite(i-check);
+		&:hover{
+			@include icons-sprite(i-check_hover);
+		}
+		input{
+			@extend .visuallyhidden;
+		}
 	}
+
+	li.s-checked .checkbox-wrapper{
+		@include icons-sprite(i-check_active);
+	}
+
+	.title{}
+	.detail{
+		clear:both;
+		overflow: hidden;
+		position: relative !important;
+		width:100%;
+		font-size:17px;
+		p{
+			margin:0;
+		}
+	}
+
 	.b-close{
 		float:right;
 		margin-left:12px;

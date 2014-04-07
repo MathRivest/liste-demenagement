@@ -10,9 +10,19 @@
 			closedClass = 's-closed',
 			checkedCookiePrefix = 'checkbox_',
 			closedCookiePrefix = 'close_',
-			$items = $('.m-items li');
+			$items = $('.m-items li'),
+			$hero = $('.m-hero');
 
 		var init = function() {
+
+			// Give the hero block the full height if its larger than an iphone
+			setContent();
+			var windowHeight = $(window).height();
+			if(windowHeight > 480){
+				$hero.height(windowHeight);
+			}
+
+
 			// Give unique ID to items
 			// Read the cookies and check matching items
 			$items.each(function(i, $el){
@@ -22,23 +32,25 @@
 				$el.id = newId;
 
 				// Append elements
-				var checkbox = $('<input/>', {
-					'type':'checkbox'
-				});
+				var checkbox = $('<label class="checkbox-wrapper"><input type="checkbox"/></label>');
 
 				var closeButton = $('<button/>', {
-					'text': 'Ne s\'applique pas',
+					'text': 'X',
 					'class': 'b-close'
 				});
 
-				$(this).append(closeButton).append(checkbox);
+				$(this).prepend(checkbox).prepend(closeButton);
 
 				if(checkedCookie){
 					// Check the checkbox and mark the item
 					$(this).addClass(checkedClass).find('input[type="checkbox"]').attr('checked', 'checked');
 				}
 				if(closedCookie){
-					$(this).addClass(closedClass)
+					$(this).addClass(closedClass);
+				}
+
+				if($(this).find('.detail').length>0){
+					$(this).addClass('l-hasdetail').prepend('<span class="i-arrow">');
 				}
 			});
 
@@ -80,12 +92,64 @@
 				}
 			});
 
+
+			$items.find('.title').on('click', function(e){
+				e.preventDefault();
+				$(this).next('.detail').collapse('toggle');
+				$(this).parents('li').toggleClass('s-open');
+			});
+
 		};
 
 		return {
 			init: init
 		};
 	})();
+
+
+
+	function getWindowHeight() {
+		var windowHeight = 0;
+		if (typeof(window.innerHeight) === 'number') {
+			windowHeight = window.innerHeight;
+		}
+		else {
+			if (document.documentElement && document.documentElement.clientHeight) {
+				windowHeight = document.documentElement.clientHeight;
+			}
+			else {
+				if (document.body && document.body.clientHeight) {
+					windowHeight = document.body.clientHeight;
+				}
+			}
+		}
+		return windowHeight;
+	}
+	function setContent() {
+		if (document.getElementById) {
+			var windowHeight = getWindowHeight();
+			if (windowHeight > 0) {
+				var contentElement = document.getElementById('hero-content');
+				var contentHeight = contentElement.offsetHeight;
+				if (windowHeight - contentHeight > 0) {
+					contentElement.style.position = 'relative';
+					contentElement.style.top = ((windowHeight / 2) - (contentHeight / 2)) + 'px';
+				}
+				else {
+					contentElement.style.position = 'static';
+				}
+			}
+		}
+	}
+	window.onload = function() {
+
+	};
+	/*window.onresize = function() {
+		setContent();
+	}*/
+	
+
+
 
 })(jQuery, window);
 

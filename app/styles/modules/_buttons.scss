@@ -1,0 +1,12 @@
+
+
+.b-close{
+	background:transparent;
+	border:none;
+	@include box-sizing(content-box);
+	padding:0;
+	margin:0;
+	&:focus{
+		outline:none;
+	}
+}

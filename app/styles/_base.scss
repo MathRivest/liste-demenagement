@@ -22,6 +22,22 @@ a {
 
 h1, h2, h3, h4, h5, h6 {}
 
+h1{
+	margin:0 0 20px 0;
+	font:{
+		size:40px;
+	}
+	line-height:48px;
+}
+
+h2, .h2{
+	position:relative;
+	font:{
+		size:17px;
+	}
+	text-transform:uppercase;
+}
+
 img { vertical-align: middle; max-width: 100%; }
 
 hr {
@@ -41,6 +57,8 @@ fieldset {
 textarea {
 	resize: vertical;
 }
+
+p{margin-top:0;}
 
 // Selection
 ::-moz-selection {

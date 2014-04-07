@@ -1,5 +1,6 @@
-// $sprites: sprite-map("sprites/icons/*.png", $spacing: 10px);            // import 1x sprites
-// $sprites2x: sprite-map("sprites-retina/icons/*.png", $spacing: 20px);   // import 2x sprites
+
+$icons-layout:smart;
+@import "icons/*.png";
 
 .icon {
 	display: inline-block;
@@ -7,7 +8,9 @@
 	@include hide-text;
 }
 
-// Example
-// .icon-test {
-// 	@include retina-sprite(icon-test);
-// }
+.i-arrow {
+		display:block;
+		width: icons-sprite-width(i-arrow);
+		height: icons-sprite-height(i-arrow);
+		@include icons-sprite(i-arrow);
+}
