@@ -150,8 +150,8 @@ module.exports = function (grunt) {
                 javascriptsDir: '<%= yeoman.app %>/scripts',
                 fontsDir: '<%= yeoman.app %>/styles/fonts',
                 importPath: '<%= yeoman.app %>/bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
+                httpImagesPath: '../images',
+                httpGeneratedImagesPath: '../images/generated',
                 httpFontsPath: '/styles/fonts',
                 relativeAssets: false,
                 assetCacheBuster: false
@@ -401,8 +401,8 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'copy:dist',
-        //'modernizr',
-        'rev',
+        'modernizr',
+        //'rev',
         'usemin',
         'htmlmin'
     ]);
