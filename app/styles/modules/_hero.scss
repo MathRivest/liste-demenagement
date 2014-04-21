@@ -1,12 +1,18 @@
 .m-hero{
 	position:relative;
 	min-height:480px;
-	margin-bottom:90px;
 	background:{
 		image:image-url('mtl.jpg');
 		size:cover;
 		position:top center;
+		repeat:no-repeat;
 	}
 	text-align:center;
 	color:white;
+	.b-start_now{
+		position:absolute;
+		bottom:48px;
+		left:50%;
+		margin-left:-13px;
+	}
 }

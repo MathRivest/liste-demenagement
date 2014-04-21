@@ -1,5 +1,5 @@
 .m-items{
-	padding:0 20px;
+	padding:0 40px;
 	li{
 		@extend .clearfix;
 		position:relative;
@@ -23,8 +23,30 @@
 				@include transition-timing-function(ease-in-out);
 			}
 		}
+
+		// When detail is opened
 		&.s-open .i-arrow{
 			@include rotate(90deg);
+		}
+
+		&.s-checked .checkbox-wrapper{
+			@include icons-sprite(i-check_active);
+		}
+
+		// When item doesn't apply
+		&.s-closed{
+			.title,
+			.detail,
+			.checkbox-wrapper,
+			.i-arrow{
+				@include opacity(0.2);
+			}
+		}
+
+		&.s-checked{}
+
+		&:hover{
+			.b-close{@include opacity(1);}
 		}
 	}
 
@@ -44,11 +66,19 @@
 		}
 	}
 
-	li.s-checked .checkbox-wrapper{
-		@include icons-sprite(i-check_active);
+
+	.title,
+	.detail,
+	.checkbox-wrapper,
+	.i-arrow{
+		@include transition-property(opacity, height);
+		@include transition-duration(0.2s);
+		@include transition-timing-function(ease-in-out);
 	}
 
-	.title{}
+
+	.title{padding-right:45px;}
+
 	.detail{
 		clear:both;
 		overflow: hidden;
@@ -61,14 +91,14 @@
 	}
 
 	.b-close{
-		float:right;
-		margin-left:12px;
+		position:absolute;
+		right:-48px;
+		top:26px;
+		@include transition-property(opacity);
+		@include transition-duration(0.2s);
+		@include transition-timing-function(ease-in-out);
+
+		@include opacity(0);
 	}
 
-	.s-closed{
-		@include opacity(0.4);
-	}
-	.s-checked{
-		color:green;
-	}
 }

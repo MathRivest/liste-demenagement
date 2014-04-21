@@ -35,8 +35,8 @@
 				var checkbox = $('<label class="checkbox-wrapper"><input type="checkbox"/></label>');
 
 				var closeButton = $('<button/>', {
-					'text': 'X',
-					'class': 'b-close'
+					'class': 'b-close',
+					'title': 'Ne s\'applique pas'
 				});
 
 				$(this).prepend(checkbox).prepend(closeButton);
@@ -97,6 +97,12 @@
 				e.preventDefault();
 				$(this).next('.detail').collapse('toggle');
 				$(this).parents('li').toggleClass('s-open');
+			});
+
+
+			$('.b-start_now').on('click', function(){
+				$('html,body').animate({scrollTop: $('.m-content').offset().top},'slow');
+				return false;
 			});
 
 		};

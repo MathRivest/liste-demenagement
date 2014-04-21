@@ -1,6 +1,4 @@
-
-
-.b-close{
+%button-reset{
 	background:transparent;
 	border:none;
 	@include box-sizing(content-box);
@@ -8,5 +6,22 @@
 	margin:0;
 	&:focus{
 		outline:none;
+	}
+}
+
+.b-close{
+	@extend %button-reset;
+	@extend .i-minus;
+	@include hide-text;
+	.s-closed &{
+		@extend .i-plus;
+	}
+}
+
+.b-start_now{
+	@extend %button-reset;
+	@extend .i-arrow_bottom;
+	@include hide-text;
+	&:hover{
 	}
 }

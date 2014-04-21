@@ -14,3 +14,24 @@ $icons-layout:smart;
 		height: icons-sprite-height(i-arrow);
 		@include icons-sprite(i-arrow);
 }
+
+.i-arrow_bottom{
+	display:block;
+	width: icons-sprite-width(i-arrow_bottom);
+	height: icons-sprite-height(i-arrow_bottom);
+	@include icons-sprite(i-arrow_bottom);
+}
+
+
+.i-plus{
+	display:block;
+	width: icons-sprite-width(i-plus);
+	height: icons-sprite-height(i-plus);
+	@include icons-sprite(i-plus);
+}
+.i-minus{
+	display:block;
+	width: icons-sprite-width(i-minus);
+	height: icons-sprite-height(i-minus);
+	@include icons-sprite(i-minus);
+}
