@@ -5,6 +5,11 @@
 @import "modules/items";
 @import "modules/hero";
 
+.m-contact{
+	text-align:center;
+	p{font-size:13px;}
+}
+
 // Desktop first breakpoint test
 #breakpoint-d {
 	&:before {

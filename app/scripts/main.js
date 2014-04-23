@@ -26,10 +26,11 @@
 			// Give unique ID to items
 			// Read the cookies and check matching items
 			$items.each(function(i, $el){
-				var newId = 'item-'+ i,
-					checkedCookie = $.cookie(checkedCookiePrefix + newId),
-					closedCookie = $.cookie(closedCookiePrefix + newId);
-				$el.id = newId;
+				//var newId = 'item-'+ i;
+				var itemId = $el.id,
+					checkedCookie = $.cookie(checkedCookiePrefix + itemId),
+					closedCookie = $.cookie(closedCookiePrefix + itemId);
+				//$el.id = newId;
 
 				// Append elements
 				var checkbox = $('<label class="checkbox-wrapper"><input type="checkbox"/></label>');
@@ -60,16 +61,21 @@
 					itemID = $item.attr('id'),
 					cookieName = checkedCookiePrefix + itemID;
 
+
 				if($.cookie(cookieName)){
 					// Unmark the item
 					$item.removeClass(checkedClass);
 					// Delete the cookie
 					$.removeCookie(cookieName);
+
+					ga('send', 'event', 'checkbox', 'click', 'uncheck', itemID);
 				}else{
 					// Mark the item
 					$item.addClass(checkedClass);
 					// Write the cookie
 					$.cookie(cookieName, itemID, { expires: 365 });
+
+					ga('send', 'event', 'checkbox', 'click', 'check', itemID);
 				}
 			});
 
@@ -84,24 +90,34 @@
 					$item.removeClass(closedClass);
 					// Delete the cookie
 					$.removeCookie(cookieName);
+
+					ga('send', 'event', 'close', 'click', 'on', itemID);
 				}else{
 					// Mark the item
 					$item.addClass(closedClass);
 					// Write the cookie
 					$.cookie(cookieName, itemID, { expires: 365 });
+
+					ga('send', 'event', 'close', 'click', 'off', itemID);
 				}
 			});
 
 
 			$items.find('.title').on('click', function(e){
 				e.preventDefault();
+				var $item = $(this).parents('li'),
+					itemID = $item.attr('id');
+
 				$(this).next('.detail').collapse('toggle');
 				$(this).parents('li').toggleClass('s-open');
+
+				ga('send', 'event', 'detail', 'click', 'toggle', itemID);
 			});
 
 
 			$('.b-start_now').on('click', function(){
 				$('html,body').animate({scrollTop: $('.m-content').offset().top},'slow');
+				ga('send', 'event', 'Start now', 'click');
 				return false;
 			});
 
